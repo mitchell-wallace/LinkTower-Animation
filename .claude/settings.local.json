@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm add:*)",
+      "Bash(npm install:*)",
+      "Bash(ls:*)",
+      "WebFetch(domain:daisyui.com)",
+      "Bash(mv:*)",
+      "Bash(pnpm run:*)"
+    ],
+    "deny": []
+  }
+}

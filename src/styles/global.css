@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  brand colours:
+  Peach: oklch(0.8323 0.0903 49)
+  Dark blue: oklch(0.4856 0.0711 241.81)
+  Blue: oklch(0.5286 0.0843 198.11)
+
+*/
+
+@layer base {
+  :root {
+    color-scheme: light dark;
+
+    /* Light theme colors */
+    --primary: oklch(0.4856 0.0711 241.81);
+    --primary-100: oklch(0.4856 0.0711 241.81);
+    --primary-200: oklch(0.5456 0.0751 242.81);
+    --primary-300: oklch(0.5941 0.0964 243.81);
+    --primary-content: oklch(0.8323 0.0903 49);
+
+    --secondary: oklch(0.8323 0.0903 49);
+    --secondary-100: oklch(0.8323 0.0903 49);
+    --secondary-200: oklch(0.7923 0.1013 47);
+    --secondary-300: oklch(0.7423 0.1123 45);
+    --secondary-content: oklch(0.4856 0.0711 241.81);
+
+    --neutral-100: oklch(0.38 0.02 237);
+    --neutral-200: oklch(0.42 0.03 237);
+    --neutral-300: oklch(0.46 0.04 237);
+    --neutral-content: oklch(0.95 0.015 237);
+
+    --base-100: oklch(1 0 0);
+    --base-200: oklch(0.96 0.01 237);
+    --base-300: oklch(0.86 0.02 237);
+    --base-content: oklch(0.2 0.02 237);
+
+    --bg-top: oklch(0.93 0.005 237);
+    --bg-bottom: oklch(0.91 0.015 237);
+  }
+
+  [data-theme="treelink-light"] {
+    color-scheme: light;
+  }
+
+  [data-theme="treelink-dark"] {
+    color-scheme: dark;
+
+    /* Dark theme colors */
+    --primary: oklch(0.4856 0.0711 241.81);
+    --primary-100: oklch(0.4856 0.0711 241.81);
+    --primary-200: oklch(0.5456 0.0751 242.81);
+    --primary-300: oklch(0.5941 0.0964 243.81);
+    --primary-content: oklch(0.8323 0.0903 49);
+
+    --secondary: oklch(0.8323 0.0903 49);
+    --secondary-100: oklch(0.8323 0.0903 49);
+    --secondary-200: oklch(0.7923 0.1013 47);
+    --secondary-300: oklch(0.7423 0.1123 45);
+    --secondary-content: oklch(0.4856 0.0711 241.81);
+
+    --neutral-100: oklch(0.91 0.01 237);
+    --neutral-200: oklch(0.84 0.015 237);
+    --neutral-300: oklch(0.79 0.018 237);
+    --neutral-content: oklch(0.33 0.03 237);
+
+    --base-100: oklch(0.3 0.02 237);
+    --base-200: oklch(0.36 0.02 237);
+    --base-300: oklch(0.41 0.03 237);
+    --base-content: oklch(0.93 0 237);
+
+    --bg-top: oklch(0.17 0.01 237);
+    --bg-bottom: oklch(0.22 0.012 237);
+  }
+}
+@layer components {
+  .prose hr {
+    @apply my-14 border-t-2 border-base-content/15 pb-6;
+  }
+}
