@@ -1,0 +1,766 @@
+---
+import { Icon } from "astro-icon/components";
+
+// Animation links data - three columns with diverse content
+const leftColumnLinks = [
+  {
+    id: "left-1",
+    title: "GitHub",
+    description: "Check out my open source projects",
+    url: "https://github.com",
+    icon: "lucide:github",
+    color: "base",
+    newTab: true
+  },
+  {
+    id: "left-2",
+    title: "Newsletter Signup",
+    description: "Get weekly updates delivered to your inbox",
+    url: "#",
+    icon: "lucide:mail",
+    color: "primary",
+    newTab: false
+  },
+  {
+    id: "left-3",
+    title: "Free eBook",
+    description: "Download my comprehensive guide",
+    url: "#",
+    icon: "lucide:book",
+    color: "secondary",
+    download: true
+  },
+  {
+    id: "left-4",
+    title: "YouTube Channel",
+    description: "Subscribe for tutorials and demos",
+    url: "https://youtube.com",
+    icon: "lucide:youtube",
+    color: "accent",
+    newTab: true
+  },
+  {
+    id: "left-5",
+    title: "Latest Blog Post",
+    description: "Read about new features",
+    url: "#",
+    icon: "lucide:newspaper",
+    color: "neutral",
+    newTab: false
+  },
+  {
+    id: "left-6",
+    title: "Twitter",
+    description: "Follow for daily tips",
+    url: "https://twitter.com",
+    icon: "lucide:twitter",
+    color: "base",
+    newTab: true
+  },
+  {
+    id: "left-7",
+    title: "Support",
+    description: "Get help with your projects",
+    url: "#",
+    icon: "lucide:help-circle",
+    color: "primary",
+    newTab: false
+  },
+  {
+    id: "left-8",
+    title: "Documentation",
+    description: "Learn how to get started",
+    url: "#",
+    icon: "lucide:book-open",
+    color: "secondary",
+    newTab: true
+  }
+];
+
+const centerColumnLinks = [
+  {
+    id: "center-1",
+    title: "LinkTower",
+    description: "Your personal link hub",
+    url: "#",
+    icon: "lucide:link",
+    image: "/profile-picture.png",
+    imageAlt: "LinkTower Logo",
+    color: "primary",
+    newTab: false
+  },
+  {
+    id: "center-2",
+    title: "Dribbble",
+    description: "View my design portfolio",
+    url: "https://dribbble.com",
+    icon: "lucide:dribbble",
+    color: "accent",
+    newTab: true
+  },
+  {
+    id: "center-3",
+    title: "LinkTower",
+    description: "Build your own link hub in minutes",
+    url: "#",
+    icon: "lucide:link",
+    image: "/profile-picture.png",
+    imageAlt: "LinkTower Logo",
+    color: "secondary",
+    newTab: false
+  },
+  {
+    id: "center-4",
+    title: "Community",
+    description: "Join our Discord server",
+    url: "#",
+    icon: "lucide:users",
+    color: "neutral",
+    newTab: true
+  },
+  {
+    id: "center-5",
+    title: "LinkTower",
+    description: "Open source and customizable",
+    url: "#",
+    icon: "lucide:link",
+    image: "/profile-picture.png",
+    imageAlt: "LinkTower Logo",
+    color: "primary",
+    newTab: false
+  },
+  {
+    id: "center-6",
+    title: "Templates",
+    description: "Get started with pre-made themes",
+    url: "#",
+    icon: "lucide:layout",
+    color: "base",
+    newTab: false
+  },
+  {
+    id: "center-7",
+    title: "LinkTower",
+    description: "Powered by Astro",
+    url: "#",
+    icon: "lucide:link",
+    image: "/profile-picture.png",
+    imageAlt: "LinkTower Logo",
+    color: "accent",
+    newTab: false
+  },
+  {
+    id: "center-8",
+    title: "Resources",
+    description: "Icons, fonts, and more",
+    url: "#",
+    icon: "lucide:package",
+    color: "secondary",
+    newTab: true
+  }
+];
+
+const rightColumnLinks = [
+  {
+    id: "right-1",
+    title: "LinkedIn",
+    description: "Connect with me professionally",
+    url: "https://linkedin.com",
+    icon: "lucide:linkedin",
+    color: "primary",
+    newTab: true
+  },
+  {
+    id: "right-2",
+    title: "Podcast",
+    description: "Listen to my latest episodes",
+    url: "#",
+    icon: "lucide:mic",
+    color: "secondary",
+    newTab: false
+  },
+  {
+    id: "right-3",
+    title: "Course Materials",
+    description: "Access all learning resources",
+    url: "#",
+    icon: "lucide:file-text",
+    color: "accent",
+    download: true
+  },
+  {
+    id: "right-4",
+    title: "Instagram",
+    description: "Behind the scenes content",
+    url: "https://instagram.com",
+    icon: "lucide:instagram",
+    color: "neutral",
+    newTab: true
+  },
+  {
+    id: "right-5",
+    title: "Contact Form",
+    description: "Send me a message",
+    url: "#",
+    icon: "lucide:send",
+    color: "base",
+    newTab: false
+  },
+  {
+    id: "right-6",
+    title: "Portfolio",
+    description: "View my recent work",
+    url: "#",
+    icon: "lucide:briefcase",
+    color: "primary",
+    newTab: true
+  },
+  {
+    id: "right-7",
+    title: "Contribute",
+    description: "Help improve the project",
+    url: "#",
+    icon: "lucide:git-pull-request",
+    color: "secondary",
+    newTab: true
+  },
+  {
+    id: "right-8",
+    title: "Sponsor",
+    description: "Support the development",
+    url: "#",
+    icon: "lucide:heart",
+    color: "accent",
+    newTab: false
+  }
+];
+
+// Helper function to render a link card (similar to CustomLink but standalone)
+const renderLinkCard = (link: any) => {
+  const isGradient = link.color?.endsWith('-gradient');
+  const baseColor = isGradient ? link.color.replace('-gradient', '') : (link.color || 'base');
+
+  const COLOR_MAP: any = {
+    base: {
+      bg: 'bg-base-100',
+      ring: 'ring-base-300/70',
+      hoverBg: 'hover:bg-base-200/70',
+      hoverRing: 'hover:ring-base-300',
+      text: 'text-base-content',
+      subtext: 'text-base-content/70',
+      icon: 'text-base-content/70'
+    },
+    primary: {
+      bg: 'bg-primary-100',
+      ring: 'ring-primary-200',
+      hoverBg: 'hover:bg-primary-200',
+      hoverRing: 'hover:ring-primary-300',
+      text: 'text-primary-content',
+      subtext: 'text-primary-content',
+      icon: 'text-primary-content/70'
+    },
+    secondary: {
+      bg: 'bg-secondary-100',
+      ring: 'ring-secondary-200',
+      hoverBg: 'hover:bg-secondary-200',
+      hoverRing: 'hover:ring-secondary-300',
+      text: 'text-secondary-content',
+      subtext: 'text-secondary-content',
+      icon: 'text-secondary-content/70'
+    },
+    accent: {
+      bg: 'bg-accent-100',
+      ring: 'ring-accent-200',
+      hoverBg: 'hover:bg-accent-200',
+      hoverRing: 'hover:ring-accent-300',
+      text: 'text-accent-content',
+      subtext: 'text-accent-content',
+      icon: 'text-accent-content/70'
+    },
+    neutral: {
+      bg: 'bg-neutral-100',
+      ring: 'ring-neutral-200',
+      hoverBg: 'hover:bg-neutral-200',
+      hoverRing: 'hover:ring-neutral-300',
+      text: 'text-neutral-content',
+      subtext: 'text-neutral-content/70',
+      icon: 'text-neutral-content/70'
+    }
+  };
+
+  const colors = COLOR_MAP[baseColor] || COLOR_MAP.base;
+  const arrowIcon = link.download ? "lucide:download" : (link.newTab ? "lucide:external-link" : "lucide:chevron-right");
+
+  return { link, colors, arrowIcon };
+};
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkTower Promo Animation</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    /* Main animation frame - 3:2 aspect ratio at ~720p */
+    .animation-frame {
+      width: 1200px;
+      height: 800px;
+      position: relative;
+      overflow: hidden;
+      background: transparent;
+    }
+
+    /* Rotated container */
+    .rotated-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(30deg) scale(1.4);
+      width: 100%;
+      height: 100%;
+      display: flex;
+      gap: 24px;
+      padding: 40px;
+    }
+
+    /* Column styles */
+    .column {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: relative;
+    }
+
+    /* Scrolling track for seamless loop */
+    .scroll-track {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* Left and right columns scroll up */
+    .column.left .scroll-track,
+    .column.right .scroll-track {
+      animation: scroll-up 20s linear infinite;
+    }
+
+    /* Center column scrolls down */
+    .column.center .scroll-track {
+      animation: scroll-down 20s linear infinite;
+    }
+
+    @keyframes scroll-up {
+      0% {
+        transform: translateY(0);
+      }
+      100% {
+        transform: translateY(-50%);
+      }
+    }
+
+    @keyframes scroll-down {
+      0% {
+        transform: translateY(-50%);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    /* Link card styles */
+    .link-card {
+      background: white;
+      border-radius: 24px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+      border: 2px solid rgba(0, 0, 0, 0.1);
+      min-height: 120px;
+      flex-shrink: 0;
+    }
+
+    .link-card.has-image {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .link-card img {
+      width: 100%;
+      aspect-ratio: 3/2;
+      object-fit: cover;
+      margin-bottom: 16px;
+    }
+
+    .link-card-content {
+      padding: 0 24px 24px 24px;
+    }
+
+    .link-card.has-image .link-card-content {
+      padding: 0 24px 24px 24px;
+    }
+
+    .link-card-body {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .link-card-icon {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+      opacity: 0.7;
+    }
+
+    .link-card-text {
+      flex: 1;
+      text-align: center;
+    }
+
+    .link-card-title {
+      font-weight: 600;
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .link-card-description {
+      font-size: 14px;
+      opacity: 0.7;
+      line-height: 1.4;
+    }
+
+    .link-card-arrow {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+      opacity: 0.7;
+    }
+
+    /* Color variants */
+    .color-base {
+      background: #f8f9fa;
+      color: #212529;
+      border-color: #dee2e6;
+    }
+
+    .color-primary {
+      background: #e7f3ff;
+      color: #004085;
+      border-color: #b8daff;
+    }
+
+    .color-secondary {
+      background: #f3e7ff;
+      color: #4a0080;
+      border-color: #d8b8ff;
+    }
+
+    .color-accent {
+      background: #fff3e0;
+      color: #804000;
+      border-color: #ffd8b8;
+    }
+
+    .color-neutral {
+      background: #e9ecef;
+      color: #495057;
+      border-color: #ced4da;
+    }
+
+    /* Export controls - positioned outside the rotated container */
+    .export-controls {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: white;
+      padding: 16px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      z-index: 1000;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .export-btn {
+      padding: 10px 20px;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .export-btn:hover {
+      background: #5568d3;
+      transform: translateY(-2px);
+    }
+
+    .export-btn:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .export-status {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .hide-controls .export-controls {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="animation-frame" id="animationFrame">
+    <div class="rotated-container">
+      <!-- Left Column (scrolls up) -->
+      <div class="column left">
+        <div class="scroll-track">
+          <!-- Duplicate content for seamless loop -->
+          {leftColumnLinks.map((link) => {
+            const { arrowIcon } = renderLinkCard(link);
+            return (
+              <div class={`link-card color-${link.color || 'base'}`}>
+                <div class="link-card-body">
+                  <Icon name={link.icon} class="link-card-icon" />
+                  <div class="link-card-text">
+                    <div class="link-card-title">{link.title}</div>
+                    {link.description && (
+                      <div class="link-card-description">{link.description}</div>
+                    )}
+                  </div>
+                  <Icon name={arrowIcon} class="link-card-arrow" />
+                </div>
+              </div>
+            );
+          })}
+          {leftColumnLinks.map((link) => {
+            const { arrowIcon } = renderLinkCard(link);
+            return (
+              <div class={`link-card color-${link.color || 'base'}`}>
+                <div class="link-card-body">
+                  <Icon name={link.icon} class="link-card-icon" />
+                  <div class="link-card-text">
+                    <div class="link-card-title">{link.title}</div>
+                    {link.description && (
+                      <div class="link-card-description">{link.description}</div>
+                    )}
+                  </div>
+                  <Icon name={arrowIcon} class="link-card-arrow" />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <!-- Center Column (scrolls down) -->
+      <div class="column center">
+        <div class="scroll-track">
+          <!-- Duplicate content for seamless loop -->
+          {centerColumnLinks.map((link) => {
+            const { arrowIcon } = renderLinkCard(link);
+            return (
+              <div class={`link-card ${link.image ? 'has-image' : ''} color-${link.color || 'base'}`}>
+                {link.image && (
+                  <img src={link.image} alt={link.imageAlt || link.title} />
+                )}
+                <div class={link.image ? 'link-card-content' : ''}>
+                  <div class="link-card-body">
+                    <Icon name={link.icon} class="link-card-icon" />
+                    <div class="link-card-text">
+                      <div class="link-card-title">{link.title}</div>
+                      {link.description && (
+                        <div class="link-card-description">{link.description}</div>
+                      )}
+                    </div>
+                    <Icon name={arrowIcon} class="link-card-arrow" />
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+          {centerColumnLinks.map((link) => {
+            const { arrowIcon } = renderLinkCard(link);
+            return (
+              <div class={`link-card ${link.image ? 'has-image' : ''} color-${link.color || 'base'}`}>
+                {link.image && (
+                  <img src={link.image} alt={link.imageAlt || link.title} />
+                )}
+                <div class={link.image ? 'link-card-content' : ''}>
+                  <div class="link-card-body">
+                    <Icon name={link.icon} class="link-card-icon" />
+                    <div class="link-card-text">
+                      <div class="link-card-title">{link.title}</div>
+                      {link.description && (
+                        <div class="link-card-description">{link.description}</div>
+                      )}
+                    </div>
+                    <Icon name={arrowIcon} class="link-card-arrow" />
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <!-- Right Column (scrolls up) -->
+      <div class="column right">
+        <div class="scroll-track">
+          <!-- Duplicate content for seamless loop -->
+          {rightColumnLinks.map((link) => {
+            const { arrowIcon } = renderLinkCard(link);
+            return (
+              <div class={`link-card color-${link.color || 'base'}`}>
+                <div class="link-card-body">
+                  <Icon name={link.icon} class="link-card-icon" />
+                  <div class="link-card-text">
+                    <div class="link-card-title">{link.title}</div>
+                    {link.description && (
+                      <div class="link-card-description">{link.description}</div>
+                    )}
+                  </div>
+                  <Icon name={arrowIcon} class="link-card-arrow" />
+                </div>
+              </div>
+            );
+          })}
+          {rightColumnLinks.map((link) => {
+            const { arrowIcon } = renderLinkCard(link);
+            return (
+              <div class={`link-card color-${link.color || 'base'}`}>
+                <div class="link-card-body">
+                  <Icon name={link.icon} class="link-card-icon" />
+                  <div class="link-card-text">
+                    <div class="link-card-title">{link.title}</div>
+                    {link.description && (
+                      <div class="link-card-description">{link.description}</div>
+                    )}
+                  </div>
+                  <Icon name={arrowIcon} class="link-card-arrow" />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Export Controls -->
+  <div class="export-controls">
+    <button class="export-btn" id="recordBtn">Start Recording</button>
+    <button class="export-btn" id="toggleControlsBtn">Hide Controls</button>
+    <div class="export-status" id="status">Ready</div>
+  </div>
+
+  <script>
+    // Simple client-side recording using MediaRecorder API
+    let mediaRecorder: MediaRecorder | null = null;
+    let recordedChunks: Blob[] = [];
+
+    const recordBtn = document.getElementById('recordBtn') as HTMLButtonElement;
+    const toggleControlsBtn = document.getElementById('toggleControlsBtn') as HTMLButtonElement;
+    const status = document.getElementById('status') as HTMLDivElement;
+
+    let controlsHidden = false;
+
+    toggleControlsBtn.addEventListener('click', () => {
+      controlsHidden = !controlsHidden;
+      document.body.classList.toggle('hide-controls', controlsHidden);
+      toggleControlsBtn.textContent = controlsHidden ? 'Show Controls' : 'Hide Controls';
+    });
+
+    recordBtn.addEventListener('click', async () => {
+      if (!mediaRecorder || mediaRecorder.state === 'inactive') {
+        try {
+          // Capture the animation frame
+          const stream = await (navigator.mediaDevices as any).getDisplayMedia({
+            video: {
+              mediaSource: 'screen',
+              width: 1200,
+              height: 800,
+              frameRate: 30
+            }
+          });
+
+          recordedChunks = [];
+          mediaRecorder = new MediaRecorder(stream, {
+            mimeType: 'video/webm;codecs=vp9',
+            videoBitsPerSecond: 5000000
+          });
+
+          mediaRecorder.ondataavailable = (event) => {
+            if (event.data.size > 0) {
+              recordedChunks.push(event.data);
+            }
+          };
+
+          mediaRecorder.onstop = () => {
+            const blob = new Blob(recordedChunks, { type: 'video/webm' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'linktower-promo.webm';
+            a.click();
+            URL.revokeObjectURL(url);
+            status.textContent = 'Download started!';
+            setTimeout(() => {
+              status.textContent = 'Ready';
+            }, 3000);
+          };
+
+          mediaRecorder.start();
+          recordBtn.textContent = 'Stop Recording';
+          status.textContent = 'Recording...';
+
+          // Auto-stop after 20 seconds (one full loop)
+          setTimeout(() => {
+            if (mediaRecorder && mediaRecorder.state === 'recording') {
+              mediaRecorder.stop();
+              stream.getTracks().forEach((track: MediaStreamTrack) => track.stop());
+              recordBtn.textContent = 'Start Recording';
+              status.textContent = 'Processing...';
+            }
+          }, 20000);
+
+        } catch (err) {
+          console.error('Error starting recording:', err);
+          status.textContent = 'Recording failed';
+        }
+      } else {
+        mediaRecorder.stop();
+        mediaRecorder.stream.getTracks().forEach((track: MediaStreamTrack) => track.stop());
+        recordBtn.textContent = 'Start Recording';
+        status.textContent = 'Processing...';
+      }
+    });
+  </script>
+</body>
+</html>

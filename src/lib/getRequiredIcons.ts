@@ -5,7 +5,11 @@ import { fileURLToPath } from 'url';
 // Always include these Lucide icons
 const DEFAULT_LUCIDE_ICONS = [
   // Icons used as part of site
-  'chevron-right', 'chevron-left', 'chevron-up', 'chevron-down', 'link', 'external-link', 'file-text', 'archive'
+  'chevron-right', 'chevron-left', 'chevron-up', 'chevron-down', 'link', 'external-link', 'file-text', 'archive',
+  // Icons used in promo page
+  'github', 'mail', 'book', 'youtube', 'newspaper', 'twitter', 'help-circle', 'book-open',
+  'dribbble', 'users', 'layout', 'package', 'linkedin', 'mic', 'instagram', 'send',
+  'briefcase', 'git-pull-request', 'heart', 'download'
 ];
 
 // ESM-compatible __dirname
