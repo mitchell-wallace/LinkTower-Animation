@@ -66,11 +66,11 @@ const ANIMATION_DURATION = 15; // seconds per loop
         transform-origin: center center;
       `}
     >
-      <!-- Three column layout -->
-      <div class="absolute inset-0 flex gap-2 p-3" style={`--duration: ${ANIMATION_DURATION}s;`}>
+      <!-- Three column layout - px-1 on columns prevents edge clipping -->
+      <div class="absolute inset-0 flex gap-1 p-3" style={`--duration: ${ANIMATION_DURATION}s;`}>
         
         <!-- Left Column - scrolls UP -->
-        <div class="flex-1 overflow-hidden">
+        <div class="flex-1 overflow-hidden px-1">
           <div class="flex flex-col gap-2 animate-scroll-up">
             {/* First set */}
             {leftColumnLinks.map((link) => (
@@ -84,7 +84,7 @@ const ANIMATION_DURATION = 15; // seconds per loop
         </div>
         
         <!-- Center Column - scrolls DOWN -->
-        <div class="flex-1 overflow-hidden">
+        <div class="flex-1 overflow-hidden px-1">
           <div class="flex flex-col gap-2 animate-scroll-down">
             {/* First set */}
             {centerColumnLinks.map((link, index) => (
@@ -98,7 +98,7 @@ const ANIMATION_DURATION = 15; // seconds per loop
         </div>
         
         <!-- Right Column - scrolls UP -->
-        <div class="flex-1 overflow-hidden">
+        <div class="flex-1 overflow-hidden px-1">
           <div class="flex flex-col gap-2 animate-scroll-up">
             {/* First set */}
             {rightColumnLinks.map((link) => (
