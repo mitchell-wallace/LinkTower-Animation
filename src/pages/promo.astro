@@ -1,0 +1,63 @@
+---
+/**
+ * Promo Animation Page
+ * Phase 1: Static 3-column layout in 1080x720 frame
+ */
+import "@/styles/global.css";
+import PromoLink from "../promo/PromoLink.astro";
+import { leftColumnLinks, centerColumnLinks, rightColumnLinks, shouldShowLogo } from "../promo/data";
+
+// Frame dimensions (3:2 aspect ratio at ~720p)
+const FRAME_WIDTH = 1080;
+const FRAME_HEIGHT = 720;
+---
+
+<!DOCTYPE html>
+<html lang="en" data-theme="treelink-light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkTower Promo Animation</title>
+</head>
+<body class="min-h-screen bg-neutral-800 flex items-center justify-center p-8">
+  
+  <!-- Frame container - exact 1080x720 dimensions -->
+  <div 
+    id="promo-frame"
+    class="relative overflow-hidden bg-gradient-to-br from-base-100 to-base-200"
+    style={`width: ${FRAME_WIDTH}px; height: ${FRAME_HEIGHT}px;`}
+  >
+    <!-- Three column layout -->
+    <div class="absolute inset-0 flex gap-4 p-4">
+      
+      <!-- Left Column -->
+      <div class="flex-1 flex flex-col gap-3 overflow-hidden">
+        {leftColumnLinks.map((link) => (
+          <PromoLink link={link} />
+        ))}
+      </div>
+      
+      <!-- Center Column -->
+      <div class="flex-1 flex flex-col gap-3 overflow-hidden">
+        {centerColumnLinks.map((link, index) => (
+          <PromoLink link={link} showLogo={shouldShowLogo(index)} />
+        ))}
+      </div>
+      
+      <!-- Right Column -->
+      <div class="flex-1 flex flex-col gap-3 overflow-hidden">
+        {rightColumnLinks.map((link) => (
+          <PromoLink link={link} />
+        ))}
+      </div>
+      
+    </div>
+  </div>
+  
+  <!-- Debug info -->
+  <div class="fixed bottom-4 left-4 bg-black/80 text-white text-sm px-4 py-2 rounded-lg">
+    Phase 1: Static Layout | Frame: {FRAME_WIDTH}x{FRAME_HEIGHT}
+  </div>
+  
+</body>
+</html>

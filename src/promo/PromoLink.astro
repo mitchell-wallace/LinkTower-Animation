@@ -1,0 +1,98 @@
+---
+/**
+ * Simplified link card for promo animation
+ * No interactivity, optimized for visual display
+ */
+import { Icon } from "astro-icon/components";
+import type { PromoLinkData } from "./data";
+
+interface Props {
+  link: PromoLinkData;
+  showLogo?: boolean;
+}
+
+const { link, showLogo = false } = Astro.props;
+
+// Color classes mapping
+const colorClasses = {
+  base: {
+    bg: "bg-base-100",
+    ring: "ring-base-300/70",
+    text: "text-base-content",
+    subtext: "text-base-content/70",
+    icon: "text-base-content/70",
+  },
+  primary: {
+    bg: "bg-primary-100",
+    ring: "ring-primary-200",
+    text: "text-primary-content",
+    subtext: "text-primary-content/80",
+    icon: "text-primary-content/70",
+  },
+  secondary: {
+    bg: "bg-secondary-100",
+    ring: "ring-secondary-200",
+    text: "text-secondary-content",
+    subtext: "text-secondary-content/80",
+    icon: "text-secondary-content/70",
+  },
+  neutral: {
+    bg: "bg-neutral-100",
+    ring: "ring-neutral-200",
+    text: "text-neutral-content",
+    subtext: "text-neutral-content/70",
+    icon: "text-neutral-content/70",
+  },
+};
+
+const colors = colorClasses[link.color];
+
+// Arrow icon based on link type
+const arrowIcon = link.linkType === "download" 
+  ? "local:download" 
+  : link.linkType === "newTab" 
+    ? "local:external-link" 
+    : "lucide:chevron-right";
+---
+
+<div
+  class:list={[
+    "flex flex-col rounded-2xl ring-2 overflow-hidden",
+    colors.bg,
+    colors.ring,
+    colors.text,
+  ]}
+>
+  {/* Logo section for LinkTower branded cards */}
+  {showLogo && (
+    <div class="flex items-center justify-center py-3 bg-white/10">
+      <img 
+        src="/profile-picture.png" 
+        alt="LinkTower" 
+        class="h-10 w-auto object-contain"
+      />
+    </div>
+  )}
+  
+  {/* Main content */}
+  <div class="flex items-center gap-2 px-4 py-3">
+    <Icon
+      name={link.icon}
+      class:list={["w-5 h-5 flex-shrink-0", colors.icon]}
+    />
+    
+    <div class="flex-1 text-center min-w-0">
+      <p class="font-semibold text-sm truncate">{link.title}</p>
+      {link.description && (
+        <p class:list={["text-xs truncate", colors.subtext]}>
+          {link.description}
+        </p>
+      )}
+    </div>
+    
+    <Icon
+      name={arrowIcon}
+      class:list={["w-5 h-5 flex-shrink-0", colors.icon]}
+    />
+  </div>
+</div>
