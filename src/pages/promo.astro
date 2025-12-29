@@ -28,24 +28,24 @@ const FRAME_HEIGHT = 720;
     style={`width: ${FRAME_WIDTH}px; height: ${FRAME_HEIGHT}px;`}
   >
     <!-- Three column layout -->
-    <div class="absolute inset-0 flex gap-4 p-4">
+    <div class="absolute inset-0 flex gap-2 p-3">
       
       <!-- Left Column -->
-      <div class="flex-1 flex flex-col gap-3 overflow-hidden">
+      <div class="flex-1 flex flex-col gap-2 overflow-hidden">
         {leftColumnLinks.map((link) => (
           <PromoLink link={link} />
         ))}
       </div>
       
       <!-- Center Column -->
-      <div class="flex-1 flex flex-col gap-3 overflow-hidden">
+      <div class="flex-1 flex flex-col gap-2 overflow-hidden">
         {centerColumnLinks.map((link, index) => (
           <PromoLink link={link} showLogo={shouldShowLogo(index)} />
         ))}
       </div>
       
       <!-- Right Column -->
-      <div class="flex-1 flex flex-col gap-3 overflow-hidden">
+      <div class="flex-1 flex flex-col gap-2 overflow-hidden">
         {rightColumnLinks.map((link) => (
           <PromoLink link={link} />
         ))}

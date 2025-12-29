@@ -57,7 +57,7 @@ const arrowIcon = link.linkType === "download"
 
 <div
   class:list={[
-    "flex flex-col rounded-2xl ring-2 overflow-hidden",
+    "flex flex-col rounded-xl ring-1 overflow-hidden",
     colors.bg,
     colors.ring,
     colors.text,
@@ -65,26 +65,26 @@ const arrowIcon = link.linkType === "download"
 >
   {/* Logo section for LinkTower branded cards */}
   {showLogo && (
-    <div class="flex items-center justify-center py-3 bg-white/10">
+    <div class="flex items-center justify-center py-1.5 bg-white/10">
       <img 
         src="/profile-picture.png" 
         alt="LinkTower" 
-        class="h-10 w-auto object-contain"
+        class="h-6 w-auto object-contain"
       />
     </div>
   )}
   
   {/* Main content */}
-  <div class="flex items-center gap-2 px-4 py-3">
+  <div class="flex items-center gap-1.5 px-2.5 py-1.5">
     <Icon
       name={link.icon}
-      class:list={["w-5 h-5 flex-shrink-0", colors.icon]}
+      class:list={["w-4 h-4 flex-shrink-0", colors.icon]}
     />
     
     <div class="flex-1 text-center min-w-0">
-      <p class="font-semibold text-sm truncate">{link.title}</p>
+      <p class="font-semibold text-xs truncate">{link.title}</p>
       {link.description && (
-        <p class:list={["text-xs truncate", colors.subtext]}>
+        <p class:list={["text-[10px] leading-tight truncate", colors.subtext]}>
           {link.description}
         </p>
       )}
@@ -92,7 +92,7 @@ const arrowIcon = link.linkType === "download"
     
     <Icon
       name={arrowIcon}
-      class:list={["w-5 h-5 flex-shrink-0", colors.icon]}
+      class:list={["w-4 h-4 flex-shrink-0", colors.icon]}
     />
   </div>
 </div>
