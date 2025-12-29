@@ -71,43 +71,55 @@ const ANIMATION_DURATION = 15; // seconds per loop
         
         <!-- Left Column - scrolls UP, items aligned right, pulled inward -->
         <div class="flex-1 overflow-hidden px-1 mr-[-30px]">
-          <div class="flex flex-col gap-2 animate-scroll-up items-end">
-            {/* First set */}
-            {leftColumnLinks.map((link) => (
-              <PromoLink link={link} />
-            ))}
+          <div class="flex flex-col animate-scroll-up items-end">
+            {/* First set - pb-2 ensures wrapper is exactly 50% of total height */}
+            <div class="flex flex-col gap-2 pb-2">
+              {leftColumnLinks.map((link) => (
+                <PromoLink link={link} />
+              ))}
+            </div>
             {/* Duplicate for seamless loop */}
-            {leftColumnLinks.map((link) => (
-              <PromoLink link={link} />
-            ))}
+            <div class="flex flex-col gap-2 pb-2">
+              {leftColumnLinks.map((link) => (
+                <PromoLink link={link} />
+              ))}
+            </div>
           </div>
         </div>
         
         <!-- Center Column - scrolls DOWN, items centered -->
         <div class="flex-1 overflow-hidden px-1">
-          <div class="flex flex-col gap-2 animate-scroll-down items-center">
-            {/* First set */}
-            {centerColumnLinks.map((link, index) => (
-              <PromoLink link={link} showLogo={shouldShowLogo(index)} />
-            ))}
+          <div class="flex flex-col animate-scroll-down items-center">
+            {/* First set - pb-2 ensures wrapper is exactly 50% of total height */}
+            <div class="flex flex-col gap-2 pb-2">
+              {centerColumnLinks.map((link, index) => (
+                <PromoLink link={link} showLogo={shouldShowLogo(index)} />
+              ))}
+            </div>
             {/* Duplicate for seamless loop */}
-            {centerColumnLinks.map((link, index) => (
-              <PromoLink link={link} showLogo={shouldShowLogo(index)} />
-            ))}
+            <div class="flex flex-col gap-2 pb-2">
+              {centerColumnLinks.map((link, index) => (
+                <PromoLink link={link} showLogo={shouldShowLogo(index)} />
+              ))}
+            </div>
           </div>
         </div>
         
         <!-- Right Column - scrolls UP, items aligned left, pulled inward -->
         <div class="flex-1 overflow-hidden px-1 ml-[-30px]">
-          <div class="flex flex-col gap-2 animate-scroll-up items-start">
-            {/* First set */}
-            {rightColumnLinks.map((link) => (
-              <PromoLink link={link} />
-            ))}
+          <div class="flex flex-col animate-scroll-up items-start">
+            {/* First set - pb-2 ensures wrapper is exactly 50% of total height */}
+            <div class="flex flex-col gap-2 pb-2">
+              {rightColumnLinks.map((link) => (
+                <PromoLink link={link} />
+              ))}
+            </div>
             {/* Duplicate for seamless loop */}
-            {rightColumnLinks.map((link) => (
-              <PromoLink link={link} />
-            ))}
+            <div class="flex flex-col gap-2 pb-2">
+              {rightColumnLinks.map((link) => (
+                <PromoLink link={link} />
+              ))}
+            </div>
           </div>
         </div>
         
