@@ -9,7 +9,7 @@ export interface PromoLinkData {
   linkType: 'default' | 'newTab' | 'download';
 }
 
-// Left column - social media and community focused
+// Left column - social media and community focused (16 items for better coverage when scrolling up)
 export const leftColumnLinks: PromoLinkData[] = [
   { title: "Follow on Twitter", icon: "local:x", color: "base", linkType: "newTab" },
   { title: "GitHub Projects", icon: "local:github", color: "primary", linkType: "newTab" },
@@ -23,6 +23,10 @@ export const leftColumnLinks: PromoLinkData[] = [
   { title: "Buy Me a Coffee", description: "Support my work", icon: "local:coffee", color: "primary", linkType: "newTab" },
   { title: "Instagram", icon: "local:instagram", color: "secondary", linkType: "newTab" },
   { title: "My Podcast", description: "Listen now", icon: "local:headphones", color: "base", linkType: "default" },
+  { title: "Stack Overflow", icon: "local:code", color: "neutral", linkType: "newTab" },
+  { title: "Dev.to Articles", description: "Tech writing", icon: "local:read", color: "primary", linkType: "newTab" },
+  { title: "Ko-fi Support", icon: "local:heart", color: "secondary", linkType: "newTab" },
+  { title: "Linktree Alt", icon: "local:link", color: "base", linkType: "newTab" },
 ];
 
 // Center column - alternates between regular links and logo cards
