@@ -1,7 +1,7 @@
 ---
 /**
  * Promo Animation Page
- * Phase 3: Infinite scrolling with 30° rotation
+ * Phase 4: Contrary motion (center down, sides up)
  */
 import "@/styles/global.css";
 import PromoLink from "../promo/PromoLink.astro";
@@ -69,9 +69,9 @@ const ANIMATION_DURATION = 15; // seconds per loop
       <!-- Three column layout -->
       <div class="absolute inset-0 flex gap-2 p-3" style={`--duration: ${ANIMATION_DURATION}s;`}>
         
-        <!-- Left Column - scrolls down -->
+        <!-- Left Column - scrolls UP -->
         <div class="flex-1 overflow-hidden">
-          <div class="flex flex-col gap-2 animate-scroll-down">
+          <div class="flex flex-col gap-2 animate-scroll-up">
             {/* First set */}
             {leftColumnLinks.map((link) => (
               <PromoLink link={link} />
@@ -83,7 +83,7 @@ const ANIMATION_DURATION = 15; // seconds per loop
           </div>
         </div>
         
-        <!-- Center Column - scrolls down -->
+        <!-- Center Column - scrolls DOWN -->
         <div class="flex-1 overflow-hidden">
           <div class="flex flex-col gap-2 animate-scroll-down">
             {/* First set */}
@@ -97,9 +97,9 @@ const ANIMATION_DURATION = 15; // seconds per loop
           </div>
         </div>
         
-        <!-- Right Column - scrolls down -->
+        <!-- Right Column - scrolls UP -->
         <div class="flex-1 overflow-hidden">
-          <div class="flex flex-col gap-2 animate-scroll-down">
+          <div class="flex flex-col gap-2 animate-scroll-up">
             {/* First set */}
             {rightColumnLinks.map((link) => (
               <PromoLink link={link} />
@@ -117,7 +117,7 @@ const ANIMATION_DURATION = 15; // seconds per loop
   
   <!-- Debug info -->
   <div class="fixed bottom-4 left-4 bg-black/80 text-white text-sm px-4 py-2 rounded-lg">
-    Phase 3: Scroll | Rotation {ROTATION_DEG}° | Scale: {SCALE} | Duration: {ANIMATION_DURATION}s
+    Phase 4: Contrary Motion | Rotation {ROTATION_DEG}° | Scale: {SCALE} | Duration: {ANIMATION_DURATION}s
   </div>
   
 </body>
