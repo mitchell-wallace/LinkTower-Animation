@@ -146,6 +146,15 @@ const ANIMATION_DURATION = 15; // seconds per loop
           Pause
         </button>
         
+        <a 
+          id="download-btn"
+          href="/promo-export.mp4"
+          download="linktower-promo.mp4"
+          class="px-3 py-1.5 bg-green-600 hover:bg-green-500 rounded-md font-medium transition-colors no-underline"
+        >
+          Download
+        </a>
+        
         <label class="flex items-center gap-2">
           <span class="text-gray-400 text-xs">Speed</span>
           <select id="speed" class="bg-gray-800 border border-gray-700 rounded px-2 py-1 text-sm">
@@ -166,13 +175,11 @@ const ANIMATION_DURATION = 15; // seconds per loop
   
   <!-- Export Instructions -->
   <div class="fixed top-4 right-4 bg-black/80 text-white text-xs px-4 py-3 rounded-lg max-w-xs">
-    <p class="font-medium mb-1">To export as video:</p>
-    <ol class="list-decimal list-inside text-gray-300 space-y-0.5">
-      <li>Use OBS or screen recorder</li>
-      <li>Set to {FRAME_WIDTH}x{FRAME_HEIGHT} region</li>
-      <li>Record for {ANIMATION_DURATION}s</li>
-      <li>Export as MP4/WebM</li>
-    </ol>
+    <p class="font-medium mb-1">Export:</p>
+    <ul class="text-gray-300 space-y-0.5">
+      <li>Click <span class="text-green-400">Download</span> for MP4 video</li>
+      <li>Run <code class="bg-gray-700 px-1 rounded">pnpm export:video</code> to regenerate</li>
+    </ul>
   </div>
   
   <script define:vars={{ ANIMATION_DURATION }}>
@@ -220,6 +227,16 @@ const ANIMATION_DURATION = 15; // seconds per loop
       animatedElements.forEach(el => {
         el.style.animationDuration = newDuration + 's';
       });
+    });
+
+    // Download button - check if video exists
+    const downloadBtn = document.getElementById('download-btn');
+    downloadBtn.addEventListener('click', async (e) => {
+      const response = await fetch('/promo-export.mp4', { method: 'HEAD' });
+      if (!response.ok) {
+        e.preventDefault();
+        alert('Video not generated yet. Run: pnpm export:video');
+      }
     });
   </script>
   

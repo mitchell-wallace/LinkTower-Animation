@@ -34,3 +34,11 @@ playwright-report/
 
 # misc
 TODO.txt
+
+# video export frames (regenerate with pnpm export:video)
+promo-frames/
+
+# test screenshots
+*.png
+!public/**/*.png
+!src/**/*.png

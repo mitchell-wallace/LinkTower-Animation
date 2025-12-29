@@ -15,7 +15,11 @@
     "test:run": "vitest run",
     "go-live": "pnpm install && pnpm run build && pnpm run deploy:win",
     "deploy": "./scripts/deploy.sh",
-    "deploy:win": "wsl \"./scripts/deploy.sh\""
+    "deploy:win": "wsl \"./scripts/deploy.sh\"",
+    "export:frames": "pnpm exec playwright test export-video.spec.ts --reporter=list",
+    "export:video": "pnpm export:frames && ffmpeg -y -framerate 30 -i promo-frames/frame-%04d.png -c:v libx264 -preset medium -crf 23 -pix_fmt yuv420p public/promo-export.mp4",
+    "export:webm": "pnpm export:frames && ffmpeg -y -framerate 30 -i promo-frames/frame-%04d.png -c:v libvpx-vp9 -crf 30 -b:v 0 public/promo-export.webm",
+    "export:gif": "pnpm export:frames && ffmpeg -y -framerate 30 -i promo-frames/frame-%04d.png -vf \"fps=15,scale=540:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse\" public/promo-export.gif"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
@@ -38,12 +42,14 @@
     "@playwright/test": "^1.56.1",
     "@tailwindcss/typography": "^0.5.15",
     "@vitest/ui": "^4.0.10",
+    "cross-env": "^7.0.3",
     "daisyui": "^4.12.14",
     "happy-dom": "^20.0.10",
     "jsdom": "^27.2.0",
+    "pixelmatch": "^7.1.0",
     "playwright": "^1.56.1",
+    "pngjs": "^7.0.0",
     "prettier": "^3.3.3",
-    "cross-env": "^7.0.3",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.6.8",
     "vitest": "^4.0.10"
