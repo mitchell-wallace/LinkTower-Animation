@@ -1,7 +1,7 @@
 ---
 /**
  * Promo Animation Page
- * Phase 1: Static 3-column layout in 1080x720 frame
+ * Phase 2: 3-column layout with 30° rotation
  */
 import "@/styles/global.css";
 import PromoLink from "../promo/PromoLink.astro";
@@ -10,6 +10,16 @@ import { leftColumnLinks, centerColumnLinks, rightColumnLinks, shouldShowLogo } 
 // Frame dimensions (3:2 aspect ratio at ~720p)
 const FRAME_WIDTH = 1080;
 const FRAME_HEIGHT = 720;
+
+// Rotation configuration
+const ROTATION_DEG = 30;
+
+// Calculate scale to fill frame after rotation
+// At 30° rotation, we need to scale up to cover the diagonal
+// Diagonal = sqrt(1080² + 720²) ≈ 1298px
+// Scale = diagonal / min(width, height) ≈ 1298/720 ≈ 1.8
+// Adding extra margin for safety
+const SCALE = 1.8;
 ---
 
 <!DOCTYPE html>
@@ -27,36 +37,50 @@ const FRAME_HEIGHT = 720;
     class="relative overflow-hidden bg-gradient-to-br from-base-100 to-base-200"
     style={`width: ${FRAME_WIDTH}px; height: ${FRAME_HEIGHT}px;`}
   >
-    <!-- Three column layout -->
-    <div class="absolute inset-0 flex gap-2 p-3">
-      
-      <!-- Left Column -->
-      <div class="flex-1 flex flex-col gap-2 overflow-hidden">
-        {leftColumnLinks.map((link) => (
-          <PromoLink link={link} />
-        ))}
+    <!-- Rotated content container -->
+    <div 
+      id="rotated-content"
+      class="absolute"
+      style={`
+        width: ${FRAME_WIDTH}px;
+        height: ${FRAME_HEIGHT}px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(${ROTATION_DEG}deg) scale(${SCALE});
+        transform-origin: center center;
+      `}
+    >
+      <!-- Three column layout -->
+      <div class="absolute inset-0 flex gap-2 p-3">
+        
+        <!-- Left Column -->
+        <div class="flex-1 flex flex-col gap-2 overflow-hidden">
+          {leftColumnLinks.map((link) => (
+            <PromoLink link={link} />
+          ))}
+        </div>
+        
+        <!-- Center Column -->
+        <div class="flex-1 flex flex-col gap-2 overflow-hidden">
+          {centerColumnLinks.map((link, index) => (
+            <PromoLink link={link} showLogo={shouldShowLogo(index)} />
+          ))}
+        </div>
+        
+        <!-- Right Column -->
+        <div class="flex-1 flex flex-col gap-2 overflow-hidden">
+          {rightColumnLinks.map((link) => (
+            <PromoLink link={link} />
+          ))}
+        </div>
+        
       </div>
-      
-      <!-- Center Column -->
-      <div class="flex-1 flex flex-col gap-2 overflow-hidden">
-        {centerColumnLinks.map((link, index) => (
-          <PromoLink link={link} showLogo={shouldShowLogo(index)} />
-        ))}
-      </div>
-      
-      <!-- Right Column -->
-      <div class="flex-1 flex flex-col gap-2 overflow-hidden">
-        {rightColumnLinks.map((link) => (
-          <PromoLink link={link} />
-        ))}
-      </div>
-      
     </div>
   </div>
   
   <!-- Debug info -->
   <div class="fixed bottom-4 left-4 bg-black/80 text-white text-sm px-4 py-2 rounded-lg">
-    Phase 1: Static Layout | Frame: {FRAME_WIDTH}x{FRAME_HEIGHT}
+    Phase 2: Rotation {ROTATION_DEG}° | Scale: {SCALE} | Frame: {FRAME_WIDTH}x{FRAME_HEIGHT}
   </div>
   
 </body>
