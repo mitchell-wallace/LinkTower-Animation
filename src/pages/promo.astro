@@ -93,13 +93,13 @@ const ANIMATION_DURATION = 15; // seconds per loop
             {/* First set - pb-2 ensures wrapper is exactly 50% of total height */}
             <div class="flex flex-col gap-2 pb-2 w-full items-center">
               {centerColumnLinks.map((link, index) => (
-                <PromoLink link={link} showLogo={shouldShowLogo(index)} />
+                <PromoLink link={link} logoOnly={shouldShowLogo(index)} />
               ))}
             </div>
             {/* Duplicate for seamless loop */}
             <div class="flex flex-col gap-2 pb-2 w-full items-center">
               {centerColumnLinks.map((link, index) => (
-                <PromoLink link={link} showLogo={shouldShowLogo(index)} />
+                <PromoLink link={link} logoOnly={shouldShowLogo(index)} />
               ))}
             </div>
           </div>

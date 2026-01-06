@@ -26,18 +26,18 @@
     --secondary-300: oklch(0.7981 0.1728 89.9);
     --secondary-content: oklch(0.25 0.05 247.26);
 
-    --neutral-100: oklch(0.38 0.02 237);
-    --neutral-200: oklch(0.42 0.03 237);
-    --neutral-300: oklch(0.46 0.04 237);
-    --neutral-content: oklch(0.95 0.015 237);
+    --neutral-100: oklch(0.38 0.02 247.26);
+    --neutral-200: oklch(0.42 0.03 247.26);
+    --neutral-300: oklch(0.46 0.04 247.26);
+    --neutral-content: oklch(0.95 0.015 247.26);
 
     --base-100: oklch(1 0 0);
-    --base-200: oklch(0.96 0.01 237);
-    --base-300: oklch(0.86 0.02 237);
-    --base-content: oklch(0.2 0.02 237);
+    --base-200: oklch(0.96 0.01 247.26);
+    --base-300: oklch(0.86 0.02 247.26);
+    --base-content: oklch(0.2 0.02 247.26);
 
-    --bg-top: oklch(0.93 0.005 237);
-    --bg-bottom: oklch(0.91 0.015 237);
+    --bg-top: oklch(0.93 0.005 247.26);
+    --bg-bottom: oklch(0.91 0.015 247.26);
   }
 
   [data-theme="treelink-light"] {
@@ -60,18 +60,18 @@
     --secondary-300: oklch(0.7981 0.1728 89.9);
     --secondary-content: oklch(0.25 0.05 247.26);
 
-    --neutral-100: oklch(0.91 0.01 237);
-    --neutral-200: oklch(0.84 0.015 237);
-    --neutral-300: oklch(0.79 0.018 237);
-    --neutral-content: oklch(0.33 0.03 237);
+    --neutral-100: oklch(0.91 0.01 247.26);
+    --neutral-200: oklch(0.84 0.015 247.26);
+    --neutral-300: oklch(0.79 0.018 247.26);
+    --neutral-content: oklch(0.33 0.03 247.26);
 
-    --base-100: oklch(0.3 0.02 237);
-    --base-200: oklch(0.36 0.02 237);
-    --base-300: oklch(0.41 0.03 237);
-    --base-content: oklch(0.93 0 237);
+    --base-100: oklch(0.3 0.02 247.26);
+    --base-200: oklch(0.36 0.02 247.26);
+    --base-300: oklch(0.41 0.03 247.26);
+    --base-content: oklch(0.93 0 247.26);
 
-    --bg-top: oklch(0.17 0.01 237);
-    --bg-bottom: oklch(0.22 0.012 237);
+    --bg-top: oklch(0.17 0.01 247.26);
+    --bg-bottom: oklch(0.22 0.012 247.26);
   }
 }
 @layer components {

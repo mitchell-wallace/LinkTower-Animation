@@ -31,18 +31,16 @@ export const leftColumnLinks: PromoLinkData[] = [
 
 // Center column - alternates between regular links and logo cards
 export const centerColumnLinks: PromoLinkData[] = [
-  { title: "About Me", icon: "local:id-card", color: "base", linkType: "default" },
-  { title: "LinkTower", description: "Open Source Link Hub", icon: "local:link", color: "primary", linkType: "newTab" }, // Logo card
+  { title: "About Me", icon: "local:id-card", color: "primary", linkType: "default" },
+  { title: "LinkTower", description: "Open Source Link Hub", icon: "local:link", color: "base", linkType: "newTab" }, // Logo card
   { title: "Contact", icon: "local:send", color: "secondary", linkType: "default" },
-  { title: "LinkTower", description: "Customize Your Links", icon: "local:sparkles", color: "neutral", linkType: "newTab" }, // Logo card
+  { title: "LinkTower", description: "Customize Your Links", icon: "local:sparkles", color: "primary", linkType: "newTab" }, // Logo card
   { title: "View Blog", icon: "local:read", color: "base", linkType: "default" },
-  { title: "LinkTower", description: "Easy Setup", icon: "local:code", color: "primary", linkType: "newTab" }, // Logo card
+  { title: "LinkTower", description: "Easy Setup", icon: "local:code", color: "neutral", linkType: "newTab" }, // Logo card
   { title: "LinkedIn", icon: "local:linkedin", color: "secondary", linkType: "newTab" },
   { title: "LinkTower", description: "Self-Hosted", icon: "local:globe", color: "base", linkType: "newTab" }, // Logo card
   { title: "My Resume", description: "Download PDF", icon: "local:download", color: "neutral", linkType: "download" },
   { title: "LinkTower", description: "Beautiful Themes", icon: "local:star", color: "secondary", linkType: "newTab" }, // Logo card
-  { title: "TikTok", icon: "local:tiktok", color: "primary", linkType: "newTab" },
-  { title: "LinkTower", description: "Your Links, Your Way", icon: "local:heart", color: "base", linkType: "newTab" }, // Logo card
 ];
 
 // Right column - more varied content

@@ -8,10 +8,10 @@ import type { PromoLinkData } from "./data";
 
 interface Props {
   link: PromoLinkData;
-  showLogo?: boolean;
+  logoOnly?: boolean;
 }
 
-const { link, showLogo = false } = Astro.props;
+const { link, logoOnly = false } = Astro.props;
 
 // Color classes mapping
 const colorClasses = {
@@ -63,36 +63,36 @@ const arrowIcon = link.linkType === "download"
     colors.text,
   ]}
 >
-  {/* Logo section for LinkTower branded cards */}
-  {showLogo && (
-    <div class="flex items-center justify-center py-1.5 bg-white/10">
+  {/* Logo only variant */ }
+  {logoOnly ? (
+    <div class="flex items-center justify-center py-4 bg-white/15 h-full w-full min-h-[100px]">
       <img 
         src="/profile-picture.png" 
         alt="LinkTower" 
-        class="h-6 w-auto object-contain"
+        class="h-20 w-auto object-contain"
+      />
+    </div>
+  ) : (
+    /* Main content for regular links */
+    <div class="flex items-center gap-1.5 px-2.5 py-1.5">
+      <Icon
+        name={link.icon}
+        class:list={["w-4 h-4 flex-shrink-0", colors.icon]}
+      />
+      
+      <div class="flex-1 text-center min-w-0">
+        <p class="font-semibold text-xs truncate">{link.title}</p>
+        {link.description && (
+          <p class:list={["text-[10px] leading-tight truncate", colors.subtext]}>
+            {link.description}
+          </p>
+        )}
+      </div>
+      
+      <Icon
+        name={arrowIcon}
+        class:list={["w-4 h-4 flex-shrink-0", colors.icon]}
       />
     </div>
   )}
-  
-  {/* Main content */}
-  <div class="flex items-center gap-1.5 px-2.5 py-1.5">
-    <Icon
-      name={link.icon}
-      class:list={["w-4 h-4 flex-shrink-0", colors.icon]}
-    />
-    
-    <div class="flex-1 text-center min-w-0">
-      <p class="font-semibold text-xs truncate">{link.title}</p>
-      {link.description && (
-        <p class:list={["text-[10px] leading-tight truncate", colors.subtext]}>
-          {link.description}
-        </p>
-      )}
-    </div>
-    
-    <Icon
-      name={arrowIcon}
-      class:list={["w-4 h-4 flex-shrink-0", colors.icon]}
-    />
-  </div>
 </div>
